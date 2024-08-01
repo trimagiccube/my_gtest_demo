@@ -1,0 +1,38 @@
+0. checkout googletest
+git submodule update --init
+
+1. compile googletest
+
+mkdir build
+cd build
+cmake ..
+make
+cd ..
+mkdir gtest_install
+make install DESTDIR=/home/xiaowen.yan/gtest/googletest/gtest_install
+
+2. compile demo
+
+vim CMakeLists.txt， change this
+set(GTEST_DIR ~/gtest/googletest/gtest_install/usr/local)
+
+mkdir build
+cd build
+cmake ..
+make
+
+3. test
+ aigcic-h3c-01  xiaowen.yan  ⋯ > gtest > demo > build  ᚠ main  ./example 
+ [==========] Running 2 tests from 1 test suite.
+ [----------] Global test environment set-up.
+ [----------] 2 tests from AddTest
+ [ RUN      ] AddTest.PositiveNumbers
+ [       OK ] AddTest.PositiveNumbers (0 ms)
+ [ RUN      ] AddTest.NegativeNumbers
+ [       OK ] AddTest.NegativeNumbers (0 ms)
+ [----------] 2 tests from AddTest (0 ms total)
+
+ [----------] Global test environment tear-down
+ [==========] 2 tests from 1 test suite ran. (0 ms total)
+ [  PASSED  ] 2 tests.
+
